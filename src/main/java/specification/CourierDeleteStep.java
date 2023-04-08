@@ -33,6 +33,7 @@ public class CourierDeleteStep {
         }
     }
 
+    @Step("Deleting a courier without id data")
     public Response deleteCourierNoId() { //Запрос без id:
         String id = "";
         return given()
