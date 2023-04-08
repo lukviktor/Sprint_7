@@ -43,9 +43,9 @@ public class CourierDeleteTest {
     public void deleteCourierNoIdTest() { //Запрос без id
         Response response = courierDelete.deleteCourierNoId();
         response.then().log().all()
-                .statusCode(HttpStatus.SC_NOT_FOUND)
+                .statusCode(HttpStatus.SC_BAD_REQUEST)
                 .assertThat()
-                .body("message", Matchers.is("Курьера с таким id нет"));
+                .body("message", Matchers.is("Недостаточно данных для удаления курьера"));
     }
 
     @DisplayName("Courier - Courier Removal")
@@ -54,10 +54,10 @@ public class CourierDeleteTest {
     public void deleteCourierNonExistentIdTest() { //Запрос c несуществующим id:
         Response response = courierDelete.deleteCourierNonExistentId();
         response.then().log().all()
-                .statusCode(HttpStatus.SC_BAD_REQUEST)
+                .statusCode(HttpStatus.SC_NOT_FOUND)
                 .and()
                 .assertThat()
-                .body("message", Matchers.is("Недостаточно данных для удаления курьера"));
+                .body("message", Matchers.is("Курьера с таким id нет."));
     }
 
     @After

@@ -6,7 +6,8 @@ import scooter.courier.Courier;
 
 import static constants.ConstantCourierData.COURIER_LOGIN;
 import static constants.ConstantCourierData.COURIER_PASSWORD;
-import static constants.ConstantUrlAPI.*;
+import static constants.ConstantUrlAPI.ENDPOINT_CREATE_COURIER;
+import static constants.ConstantUrlAPI.ENDPOINT_LOGIN_COURIER;
 import static io.restassured.RestAssured.given;
 
 public class CourierDeleteStep {
@@ -33,13 +34,15 @@ public class CourierDeleteStep {
     }
 
     public Response deleteCourierNoId() { //Запрос без id:
+        String id = "";
         return given()
-                .delete(ENDPOINT_DELETE_COURIER);
+                .delete(ENDPOINT_CREATE_COURIER + "/" + id);
     }
 
     @Step("Deleting a courier without id data")
     public Response deleteCourierNonExistentId() { //Запрос c несуществующим id
+        String id = "000000";
         return given()
-                .delete(ENDPOINT_CREATE_COURIER + "/{id}", "1aa2w");
+                .delete(ENDPOINT_CREATE_COURIER + "/" + id);
     }
 }
