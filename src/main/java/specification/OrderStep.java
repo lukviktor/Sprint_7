@@ -26,7 +26,7 @@ public class OrderStep {
 
     }
 
-
+    @Step("Getting a list of orders")
     public Response getOrdersRequest() {
         Response response =
                 given().log().all()

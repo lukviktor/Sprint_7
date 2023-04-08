@@ -16,7 +16,7 @@ import static org.hamcrest.Matchers.notNullValue;
 
 @RunWith(Parameterized.class)
 public class CreateOrderTest {
-    Order order;
+    private Order order;
 
     public CreateOrderTest(Order order) {
         this.order = order;

@@ -1,5 +1,6 @@
 package specification;
 
+import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import scooter.courier.Courier;
 
@@ -9,7 +10,7 @@ import static constants.ConstantUrlAPI.*;
 import static io.restassured.RestAssured.given;
 
 public class CourierDeleteStep {
-
+    @Step("Getting the Courier ID value")
     public Integer courierId() {
         Courier courier = new Courier(COURIER_LOGIN, COURIER_PASSWORD);
         Integer id =
@@ -22,6 +23,7 @@ public class CourierDeleteStep {
         return id;
     }
 
+    @Step("Deleting a courier by id")
     public void deleteDataCourier() { //запрос на успешное удаление курьера
         Integer id = courierId();
         if (id != null) {
@@ -35,6 +37,7 @@ public class CourierDeleteStep {
                 .delete(ENDPOINT_DELETE_COURIER);
     }
 
+    @Step("Deleting a courier without id data")
     public Response deleteCourierNonExistentId() { //Запрос c несуществующим id
         return given()
                 .delete(ENDPOINT_CREATE_COURIER + "/{id}", "1aa2w");
